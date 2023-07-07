@@ -9,4 +9,9 @@ public class DialogueButtonTest : MonoBehaviour
     {
         dialogueController.ReadNextLine();
     }
+
+    public void ReadGivenLine()
+    {
+        dialogueController.ReadGivenLine("Now you can say things out of a set rotation");
+    }
 }
