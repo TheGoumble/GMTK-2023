@@ -9,6 +9,8 @@ public class FishingMinigame : MonoBehaviour
     private bool jumpable;
     [SerializeField] GameObject fish_go;
     [SerializeField] GameObject slider_go;
+    [SerializeField] GameObject splash_go;
+    private ParticleSystem splash;
     private Rigidbody2D fish_rb;
     private int tier;
 
@@ -25,6 +27,7 @@ public class FishingMinigame : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         jumpable = true;
         fish_rb = fish_go.gameObject.GetComponent<Rigidbody2D>();
+        splash = splash_go.GetComponent<ParticleSystem>();
     }
 
     // Update is called once per frame
@@ -47,6 +50,8 @@ public class FishingMinigame : MonoBehaviour
             fish_go.transform.position = gameObject.transform.position;
             fish_rb.AddForce(new Vector2(0f, 200f));
             fish_go.GetComponent<SpriteRenderer>().enabled = true;
+            splash_go.transform.position = rb.transform.position;
+            splash.Play();
 
             if (tier == 1)
             {
