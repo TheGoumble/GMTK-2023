@@ -51,22 +51,22 @@ public class FishingSlider : MonoBehaviour
             moving = false;
             if ((pointer_tf.position.x >= -2.79 && pointer_tf.position.x < -1.895) || (pointer_tf.position.x <= 2.79 && pointer_tf.position.x > 1.895))
             {
-                text.text = "Terrible...";
+                text.text = "TERRIBLE...";
                 text.color = new Color(1f, 0.5f, 0.5f, 1f);
             }
             else if ((pointer_tf.position.x >= -1.895 && pointer_tf.position.x < -1.227) || (pointer_tf.position.x <= 1.895 && pointer_tf.position.x > 1.227))
             {
-                text.text = "Bad";
+                text.text = "BAD";
                 text.color = new Color(0.9f, 0.2f, 0.1f, 1f);
             }
             else if ((pointer_tf.position.x >= -1.227 && pointer_tf.position.x < -0.618) || (pointer_tf.position.x <= 1.227 && pointer_tf.position.x > 0.618))
             {
-                text.text = "Decent";
+                text.text = "DECENT";
                 text.color = new Color(1f, 0.64f, 0f, 1f);
             }
             else if ((pointer_tf.position.x >= -0.618 && pointer_tf.position.x < -0.161) || (pointer_tf.position.x <= 0.618 && pointer_tf.position.x > 0.161))
             {
-                text.text = "Good!";
+                text.text = "GOOD!";
                 text.color = new Color(0.6f, 0.7f, 0.1f, 1f);
             }
             else
