@@ -6,17 +6,14 @@ using UnityEngine.UI;
 public class PlayerCombatController : MonoBehaviour
 {
     private bool InCombat, IsPlayersTurn = false;
-    public Image moveSelect, ItemSelect, confirmScreen;
+    public GameObject moveSelect, ItemSelect, confirmScreen;
     private int currentlySelectedItem = 1000;
     // Start is called before the first frame update
     void Update(){
         if(!InCombat) return;
 
         if(IsPlayersTurn){
-            moveSelect.enabled = true;
-        }
-        else{
-
+            moveSelect.SetActive(true);
         }
     }
     //================================
@@ -30,10 +27,10 @@ public class PlayerCombatController : MonoBehaviour
 
     //================================
     public void OpenItemSelect(){
-        ItemSelect.enabled = true;
+        ItemSelect.SetActive(true);
     }
     public void CloseItemSelect(){
-        ItemSelect.enabled = false;
+        ItemSelect.SetActive(false);
     }
     public void ChooseItem(int itemNum){
         currentlySelectedItem = itemNum;
@@ -41,12 +38,12 @@ public class PlayerCombatController : MonoBehaviour
     }
     //================================
     private void Confirm(){
-        confirmScreen.enabled = true;
+        confirmScreen.SetActive(true);
     }
-    public void Accept(int choice, int itemNum = 1000){
-        confirmScreen.enabled = false;
-        ItemSelect.enabled = false;
-        moveSelect.enabled = false;
+    public void Accept(int choice){
+        confirmScreen.SetActive(false);
+        ItemSelect.SetActive(false);
+        moveSelect.SetActive(false);
         if(choice == 1){
             Attack1();
         }
@@ -54,11 +51,11 @@ public class PlayerCombatController : MonoBehaviour
             Attack2();
         }
         else if(choice == 3){
-            UseItem(itemNum);
+            UseItem();
         }
     }
     public void Deny(){
-        confirmScreen.enabled = false;
+        confirmScreen.SetActive(false);
         currentlySelectedItem = 1000;
     }
     //================================
@@ -66,13 +63,16 @@ public class PlayerCombatController : MonoBehaviour
 
     private void Attack1(){
         //play attck1 animation
+        Debug.Log("Bruh");
         IsPlayersTurn = false;
     }
     private void Attack2(){
+        Debug.Log("Bruh2");
         IsPlayersTurn = false;
     }
-    private void UseItem(int ItemNum){
+    private void UseItem(){
         //useItem
+        Debug.Log("Bruh3");
         IsPlayersTurn = false;
     }
 }
