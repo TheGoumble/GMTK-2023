@@ -14,9 +14,12 @@ public class FishingMinigame : MonoBehaviour
     [SerializeField] GameObject desert_go;
     [SerializeField] GameObject snow_go;
     [SerializeField] GameObject badlands_go;
+    [SerializeField] GameObject hp_go;
+
     private ParticleSystem splash;
     private Rigidbody2D fish_rb;
     private int tier;
+    private ParticleSystem hp;
 
     public Sprite[] terribleFish;
     public Sprite[] badFish;
@@ -35,6 +38,8 @@ public class FishingMinigame : MonoBehaviour
         fish_rb = fish_go.gameObject.GetComponent<Rigidbody2D>();
         splash = splash_go.GetComponent<ParticleSystem>();
         biome = biome.ToLower();
+        hp = hp_go.GetComponent<ParticleSystem>();
+
         if (biome == "grass")
         {
             grass_go.SetActive(true);
@@ -68,11 +73,16 @@ public class FishingMinigame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            ResetMinigame();
+        }
+
         tier = slider_go.GetComponent<FishingSlider>().tier;
 
         if (Input.GetKeyDown(KeyCode.Space) && jumpable)
         {
-            rb.AddForce(new Vector2(250,250));
+            rb.AddForce(new Vector2(320,450));
             jumpable = false;
         }
     }
@@ -80,6 +90,7 @@ public class FishingMinigame : MonoBehaviour
     // When the slime hits the ground
     private void OnCollisionEnter2D(Collision2D collision)
     {
+
         if (!jumpable)
         {
             fish_go.transform.position = gameObject.transform.position;
@@ -87,6 +98,8 @@ public class FishingMinigame : MonoBehaviour
             fish_go.GetComponent<SpriteRenderer>().enabled = true;
             splash_go.transform.position = rb.transform.position;
             splash.Play();
+            hp_go.transform.position = fish_go.transform.position;
+            hp.Play();
 
             if (tier == 1)
             {
@@ -109,5 +122,11 @@ public class FishingMinigame : MonoBehaviour
                 fish_go.GetComponent<SpriteRenderer>().sprite = perfectFish[Random.Range(0, 6)];
             }
         }
+    }
+    void ResetMinigame()
+    {
+        rb.position = new Vector2(-4.88f, 0.257f);
+        fish_go.GetComponent<SpriteRenderer>().sprite = null;
+        jumpable = true;
     }
 }
