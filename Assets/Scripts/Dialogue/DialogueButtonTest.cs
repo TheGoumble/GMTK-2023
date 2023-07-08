@@ -12,6 +12,6 @@ public class DialogueButtonTest : MonoBehaviour
 
     public void ReadGivenLine()
     {
-        dialogueController.ReadGivenLine("Now you can say things out of a set rotation");
+        dialogueController.ReadGivenLine("Test line for out of order inserts", true);
     }
 }

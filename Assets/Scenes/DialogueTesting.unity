@@ -1196,6 +1196,7 @@ MonoBehaviour:
   speakerNameText: {fileID: 1837094213}
   speakerWords: {fileID: 1514576885}
   mainBox: {fileID: 88227749}
+  wobble: {fileID: 1514576887}
   speakerName: Chester
   isFacingRight: 0
   xOffset: 1.8
@@ -1213,6 +1214,7 @@ GameObject:
   - component: {fileID: 1514576884}
   - component: {fileID: 1514576886}
   - component: {fileID: 1514576885}
+  - component: {fileID: 1514576887}
   m_Layer: 0
   m_Name: Main Text
   m_TagString: Untagged
@@ -1374,6 +1376,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1514576887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1514576883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92bc8bfa0a659ed42902859b6ac4a59c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 1514576885}
 --- !u!1 &1837094211
 GameObject:
   m_ObjectHideFlags: 0

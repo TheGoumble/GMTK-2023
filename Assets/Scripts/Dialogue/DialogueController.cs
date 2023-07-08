@@ -9,6 +9,7 @@ public class DialogueController : MonoBehaviour
     [SerializeField] private TextMeshPro speakerNameText;   // The TMPro assets holding the text
     [SerializeField] private TextMeshPro speakerWords;
     [SerializeField] private SpriteRenderer mainBox;        // Main box (for sprite purposes)
+    [SerializeField] private WobblyText wobble;
 
     [Header("Speaker Details")]
     [SerializeField] private string speakerName;    // Name of the speaker
@@ -37,6 +38,8 @@ public class DialogueController : MonoBehaviour
         }
             
         speakerNameText.text = speakerName;
+        wobble.enabled = false;
+        speakerWords.enableAutoSizing = true;
         getFileContents();
         this.gameObject.SetActive(false);
     }
@@ -45,8 +48,9 @@ public class DialogueController : MonoBehaviour
     public void ReadNextLine()  // Call this to read the next line of dialogue in the text doc
     {
         StopAllCoroutines();
+        wobble.enabled = false;
+        speakerWords.enableAutoSizing = true;
         speakerWords.text = "";                 // Clear the bubble so it can be read out
-        // TODO: Add something here for a determination of the size of the text bubble
         this.gameObject.SetActive(true);        // Show the dialogue bubble
         StartCoroutine(DoReadLine(lines[currentLine]));
         currentLine++;      // Increment the line we're on so we read the next line next time
@@ -56,11 +60,20 @@ public class DialogueController : MonoBehaviour
         }
     }
 
-    public void ReadGivenLine(string givenLine) // For if you want a character to say a line that's out of sequence
+    public void ReadGivenLine(string givenLine, bool wobbly) // For if you want a character to say a line that's out of sequence
     {
         StopAllCoroutines();
         speakerWords.text = "";                 // Clear the bubble so it can be read out
-        // TODO: Add something here for a determination of the size of the text bubble
+        if (wobbly)
+        {
+            wobble.enabled = true;
+            speakerWords.enableAutoSizing = false;
+        }
+        else
+        {
+            wobble.enabled = false;
+            speakerWords.enableAutoSizing = true;
+        }
         this.gameObject.SetActive(true);        // Show the dialogue bubble
         StartCoroutine(DoReadLine(givenLine));
     }
@@ -93,7 +106,4 @@ public class DialogueController : MonoBehaviour
 
         yield return null;
     }
-
-    // TODO
-    // - If a message is a certain length, the text box should be bigger or smaller
 }
