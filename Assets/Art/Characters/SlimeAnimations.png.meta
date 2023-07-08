@@ -128,7 +128,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1621
+        width: 1597
         height: 1600
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -147,9 +147,9 @@ TextureImporter:
       name: SlimeAnimations_1
       rect:
         serializedVersion: 2
-        x: 1640
+        x: 1604
         y: 0
-        width: 1600
+        width: 1593
         height: 1600
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -168,9 +168,9 @@ TextureImporter:
       name: SlimeAnimations_2
       rect:
         serializedVersion: 2
-        x: 3242
+        x: 3204
         y: 0
-        width: 1514
+        width: 1590
         height: 1600
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -189,9 +189,9 @@ TextureImporter:
       name: SlimeAnimations_3
       rect:
         serializedVersion: 2
-        x: 4761
+        x: 4806
         y: 0
-        width: 1616
+        width: 1588
         height: 1600
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -210,9 +210,9 @@ TextureImporter:
       name: SlimeAnimations_4
       rect:
         serializedVersion: 2
-        x: 6381
+        x: 6404
         y: 0
-        width: 1619
+        width: 1596
         height: 1600
       alignment: 0
       pivot: {x: 0.5, y: 0.5}

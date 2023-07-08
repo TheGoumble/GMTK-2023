@@ -6,7 +6,10 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/OpenCinematic.unity
+    path: Assets/Scenes/00_MainMenu.unity
+    guid: 00370717a5f5b7b4892b52de54f26825
+  - enabled: 1
+    path: Assets/Scenes/01_OpenCinematic.unity
     guid: c3859c4421e02432495f5ba4cd34087f
   - enabled: 1
     path: Assets/Scenes/FishingMinigame.unity
