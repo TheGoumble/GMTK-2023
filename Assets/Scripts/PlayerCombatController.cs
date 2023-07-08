@@ -6,8 +6,9 @@ using UnityEngine.UI;
 public class PlayerCombatController : MonoBehaviour
 {
     private bool InCombat, IsPlayersTurn = false;
-    public GameObject moveSelect, ItemSelect, confirmScreen;
+    public GameObject moveSelect, ItemSelect, confirmScreen, backUpPlayer;
     private int currentlySelectedItem = 1000;
+    private int currentMove;
     // Start is called before the first frame update
     void Update(){
         if(!InCombat) return;
@@ -19,9 +20,15 @@ public class PlayerCombatController : MonoBehaviour
     //================================
     
     public void Attack1Selected(){
+        currentMove = 1;
         Confirm();
     }
     public void Attack2Selected(){
+        currentMove = 2;
+        Confirm();
+    }
+    public void CallBackup(){
+        currentMove = 3;
         Confirm();
     }
 
@@ -33,6 +40,7 @@ public class PlayerCombatController : MonoBehaviour
         ItemSelect.SetActive(false);
     }
     public void ChooseItem(int itemNum){
+        currentMove = 0;
         currentlySelectedItem = itemNum;
         Confirm();
     }
@@ -40,17 +48,29 @@ public class PlayerCombatController : MonoBehaviour
     private void Confirm(){
         confirmScreen.SetActive(true);
     }
-    public void Accept(int choice){
+    public void Accept(){
         confirmScreen.SetActive(false);
         ItemSelect.SetActive(false);
         moveSelect.SetActive(false);
-        if(choice == 1){
+        if(currentMove == 1){
             Attack1();
         }
-        else if(choice == 2){
+        else if(currentMove == 2){
             Attack2();
         }
-        else if(choice == 3){
+        else if(currentMove == 3){
+            TryCallBackup();
+        }
+        else if(currentMove == 4){
+            UseItem();
+        }
+        else if(currentMove == 5){
+            UseItem();
+        }
+        else if(currentMove == 6){
+            UseItem();
+        }
+        else if(currentMove == 7){
             UseItem();
         }
     }
@@ -59,7 +79,6 @@ public class PlayerCombatController : MonoBehaviour
         currentlySelectedItem = 1000;
     }
     //================================
-
 
     private void Attack1(){
         //play attck1 animation
@@ -70,9 +89,29 @@ public class PlayerCombatController : MonoBehaviour
         Debug.Log("Bruh2");
         IsPlayersTurn = false;
     }
+
+    private void TryCallBackup(){
+        int backUpSucceeded = Random.Range(0, 2);
+        if(backUpSucceeded == 1){
+            BackUpSucceeded();
+        }
+        else if(backUpSucceeded == 0){
+            BackUpFailed();
+        }
+    }
     private void UseItem(){
         //useItem
         Debug.Log("Bruh3");
+        IsPlayersTurn = false;
+    }
+
+    private void BackUpSucceeded(){
+        Debug.Log("Succeeded");
+        GameObject backup = Instantiate(backUpPlayer);
+        IsPlayersTurn = false;
+    }
+    private void BackUpFailed(){
+        Debug.Log("Failed");
         IsPlayersTurn = false;
     }
 }

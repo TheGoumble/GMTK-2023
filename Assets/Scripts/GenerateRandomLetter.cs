@@ -12,9 +12,7 @@ public class GenerateRandomLetter : MonoBehaviour
         GenerateLetter();
     }
     private void Update(){
-        if(!gameObject.activeSelf){
-            GenerateLetter();
-        }
+        GenerateLetter();
     }
     public void GenerateLetter(){
         string alphebet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
