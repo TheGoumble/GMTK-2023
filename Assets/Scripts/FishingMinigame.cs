@@ -9,6 +9,12 @@ public class FishingMinigame : MonoBehaviour
     private bool jumpable;
     [SerializeField] GameObject fish_go;
     [SerializeField] GameObject slider_go;
+    [SerializeField] GameObject splash_go;
+    [SerializeField] GameObject grass_go;
+    [SerializeField] GameObject desert_go;
+    [SerializeField] GameObject snow_go;
+    [SerializeField] GameObject badlands_go;
+    private ParticleSystem splash;
     private Rigidbody2D fish_rb;
     private int tier;
 
@@ -18,6 +24,8 @@ public class FishingMinigame : MonoBehaviour
     public Sprite[] goodFish;
     public Sprite[] perfectFish;
 
+    public string biome;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +33,36 @@ public class FishingMinigame : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         jumpable = true;
         fish_rb = fish_go.gameObject.GetComponent<Rigidbody2D>();
+        splash = splash_go.GetComponent<ParticleSystem>();
+        biome = biome.ToLower();
+        if (biome == "grass")
+        {
+            grass_go.SetActive(true);
+            desert_go.SetActive(false);
+            snow_go.SetActive(false);
+            badlands_go.SetActive(false);
+        }
+        else if (biome == "desert")
+        {
+            grass_go.SetActive(false);
+            desert_go.SetActive(true);
+            snow_go.SetActive(false);
+            badlands_go.SetActive(false);
+        }
+        else if (biome == "snow")
+        {
+            grass_go.SetActive(false);
+            desert_go.SetActive(false);
+            snow_go.SetActive(true);
+            badlands_go.SetActive(false);
+        }
+        else if (biome == "badlands")
+        {
+            grass_go.SetActive(false);
+            desert_go.SetActive(false);
+            snow_go.SetActive(false);
+            badlands_go.SetActive(true);
+        }
     }
 
     // Update is called once per frame
@@ -47,6 +85,8 @@ public class FishingMinigame : MonoBehaviour
             fish_go.transform.position = gameObject.transform.position;
             fish_rb.AddForce(new Vector2(0f, 200f));
             fish_go.GetComponent<SpriteRenderer>().enabled = true;
+            splash_go.transform.position = rb.transform.position;
+            splash.Play();
 
             if (tier == 1)
             {
