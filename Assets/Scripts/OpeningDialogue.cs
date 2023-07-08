@@ -11,8 +11,7 @@ public class OpeningDialogue : MonoBehaviour
     public Image frame1;
     public Image frame2;
     public Image frame3;
-   public string[] lines;
-    
+    public string[] lines;
     public float textSpeed;
 
     private int index;
@@ -20,7 +19,7 @@ public class OpeningDialogue : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {     
+    {
         textComponent.text = string.Empty;
         StartDialogue();
     }
@@ -38,30 +37,33 @@ public class OpeningDialogue : MonoBehaviour
         }
     }
 
-    void StartDialogue()
-    {
-
+    void StartDialogue(){
         index = 0;
-
         StartCoroutine(TypeLine());
     }
 
-    IEnumerator TypeLine()
-    {
+    IEnumerator TypeLine(){
         foreach(char c in lines[index].ToCharArray()){
             textComponent.text += c;
             yield return new WaitForSeconds(textSpeed);
         }
     }
-
     void NextLine()
     {   
-        if(lines[index] == "*NEXT*" ){
+        if( index == 0 ){
             index++;
+            textComponent.text = string.Empty;
+            StartCoroutine(TypeLine());
             frame1.enabled = false;
             frame2.enabled = true;
+        }else if( index == 2 ){
+            index++;
+            textComponent.text = string.Empty;
+            StartCoroutine(TypeLine());
+            frame2.enabled = false;
+            frame3.enabled = true;
         }
-        else if (index < lines.Length - 1 &&  lines[index] != "*NEXT*"){
+        else if (index < lines.Length - 1){
             index++;
             textComponent.text = string.Empty;
             StartCoroutine(TypeLine());
