@@ -20,7 +20,6 @@ public class FishingSlider : MonoBehaviour
     private bool direction;
     private bool moving;
     private bool jumpable;
-    public int tier;
     public int health_healed;
 
     // Start is called before the first frame update
@@ -38,9 +37,8 @@ public class FishingSlider : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-
         if (Input.GetKeyDown(KeyCode.D))
         {
             ResetMinigame();
@@ -50,11 +48,11 @@ public class FishingSlider : MonoBehaviour
         {
             if (pointer_tf.position.x < 2.79 && direction)
             {
-                pointer_tf.position = new Vector2(pointer_tf.position.x + 0.005f, pointer_tf.position.y);
+                pointer_tf.position = new Vector2(pointer_tf.position.x + 0.01f, pointer_tf.position.y);
             }
             else if (pointer_tf.position.x > -2.79 && !direction)
             {
-                pointer_tf.position = new Vector2(pointer_tf.position.x - 0.005f, pointer_tf.position.y);
+                pointer_tf.position = new Vector2(pointer_tf.position.x - 0.01f, pointer_tf.position.y);
             }
             if (pointer_tf.position.x > 2.79 || pointer_tf.position.x < -2.79)
             {
@@ -62,7 +60,7 @@ public class FishingSlider : MonoBehaviour
             }
         }
      
-        if (Input.GetKeyDown(KeyCode.Space) && jumpable)
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) && jumpable)
         {
             moving = false;
             if ((pointer_tf.position.x >= -2.79 && pointer_tf.position.x < -1.895) || (pointer_tf.position.x <= 2.79 && pointer_tf.position.x > 1.895))
@@ -71,7 +69,6 @@ public class FishingSlider : MonoBehaviour
                 health_healed = 0;
                 text.color = new Color(1f, 0.5f, 0.5f, 1f);
                 number.color = new Color(1f, 0.5f, 0.5f, 1f);
-                tier = 1;
             }
             else if ((pointer_tf.position.x >= -1.895 && pointer_tf.position.x < -1.227) || (pointer_tf.position.x <= 1.895 && pointer_tf.position.x > 1.227))
             {
@@ -79,7 +76,6 @@ public class FishingSlider : MonoBehaviour
                 health_healed = 1;
                 text.color = new Color(0.9f, 0.2f, 0.1f, 1f);
                 number.color = new Color(0.9f, 0.2f, 0.1f, 1f);
-                tier = 2;
             }
             else if ((pointer_tf.position.x >= -1.227 && pointer_tf.position.x < -0.618) || (pointer_tf.position.x <= 1.227 && pointer_tf.position.x > 0.618))
             {
@@ -87,7 +83,6 @@ public class FishingSlider : MonoBehaviour
                 health_healed = 2;
                 text.color = new Color(1f, 0.64f, 0f, 1f);
                 number.color = new Color(1f, 0.64f, 0f, 1f);
-                tier = 3;
             }
             else if ((pointer_tf.position.x >= -0.618 && pointer_tf.position.x < -0.161) || (pointer_tf.position.x <= 0.618 && pointer_tf.position.x > 0.161))
             {
@@ -95,7 +90,6 @@ public class FishingSlider : MonoBehaviour
                 health_healed = 3;
                 text.color = new Color(0.6f, 0.7f, 0.1f, 1f);
                 number.color = new Color(0.6f, 0.7f, 0.1f, 1f);
-                tier = 4;
             }
             else
             {
@@ -103,7 +97,6 @@ public class FishingSlider : MonoBehaviour
                 health_healed = 5;
                 text.color = new Color(0f, 0.65f, 0.4f, 1f);
                 number.color = new Color(0f, 0.65f, 0.4f, 1f);
-                tier = 5;
             }
             
             pp.Play();

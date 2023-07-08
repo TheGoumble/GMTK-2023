@@ -1215,8 +1215,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.3692999, y: 0.07989979, z: 0}
-    m_Extent: {x: 25.0108, y: 13.1621, z: 0}
+    m_Center: {x: 0.3729496, y: 0.08129978, z: 0}
+    m_Extent: {x: 25.01535, y: 13.16, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -14269,8 +14269,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.38379955, y: 0.08080006, z: 0}
-    m_Extent: {x: 25.013699, y: 13.1644, z: 0}
+    m_Center: {x: 0.38505077, y: 0.088449955, z: 0}
+    m_Extent: {x: 25.01155, y: 13.16835, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -14351,8 +14351,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.38049984, y: 0.08155012, z: 0}
-    m_Extent: {x: 25.010399, y: 13.164949, z: 0}
+    m_Center: {x: 0.37874985, y: 0.07884979, z: 0}
+    m_Extent: {x: 25.01795, y: 13.16615, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -14904,7 +14904,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1281202159}
-  - component: {fileID: 1281202160}
   m_Layer: 0
   m_Name: Slider
   m_TagString: Untagged
@@ -14929,26 +14928,6 @@ Transform:
   m_Father: {fileID: 519420032}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1281202160
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1281202158}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf367b0d60fae594990789db5cadd0de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pointer: {fileID: 543368906}
-  text_go: {fileID: 113133676}
-  num_go: {fileID: 1352339853}
-  pp_go: {fileID: 1539485482}
-  hp_go: {fileID: 1775522871}
-  fish_go: {fileID: 1815102571}
-  tier: 0
-  health_healed: 0
 --- !u!1 &1352339853
 GameObject:
   m_ObjectHideFlags: 0
@@ -15235,7 +15214,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.011875, y: 1.0009766}
+    oldSize: {x: 0.99750006, y: 1.0009766}
     newSize: {x: 1.011875, y: 1.0009766}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -15257,13 +15236,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fish_go: {fileID: 1815102571}
+  pointer: {fileID: 543368906}
   slider_go: {fileID: 1281202158}
   splash_go: {fileID: 546535711}
   grass_go: {fileID: 758258324}
   desert_go: {fileID: 1722893841}
   snow_go: {fileID: 1997073763}
   badlands_go: {fileID: 669347479}
+  pp_go: {fileID: 1539485482}
+  text_go: {fileID: 113133676}
   hp_go: {fileID: 1775522871}
+  num_go: {fileID: 1352339853}
   terribleFish:
   - {fileID: 21300000, guid: 7b4e7d622a982f3429cf7857b8f0bb0a, type: 3}
   - {fileID: 21300000, guid: 2939b884adfc04c4c8e614db3937390c, type: 3}
@@ -15303,6 +15286,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 60ed0cf9fd6c9eb419a8c1e5f9669c63, type: 3}
   - {fileID: 21300000, guid: 22f880db8957d2148b7f064d3c25ed5f, type: 3}
   - {fileID: 21300000, guid: e2ce2fb31f977424e94ca85acee45705, type: 3}
+  health_healed: 0
   biome: grass
 --- !u!1 &1539485482
 GameObject:
