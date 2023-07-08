@@ -661,7 +661,7 @@ MonoBehaviour:
   nextIndicator: {fileID: 1155518656}
   transitionToSceneNumber: 2
   cutsceneStartBuffer: 4
-  cutsceneEndBuffer: 4
+  cutsceneEndBuffer: 6
   transition: {fileID: 1216744284}
 --- !u!1 &1029142854
 GameObject:

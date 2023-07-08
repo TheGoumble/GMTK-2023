@@ -32,6 +32,6 @@ public class MainMenu : MonoBehaviour
     {
         transitionScreen.FadeIn();
         yield return new WaitForSeconds(6f);
-        SceneManager.LoadScene(SceneManager.GetSceneByName("OpenCinematic").buildIndex);
+        SceneManager.LoadScene(1); // Load the opening cutscene
     }
 }
