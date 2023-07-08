@@ -256,7 +256,7 @@ RectTransform:
   m_GameObject: {fileID: 395137981}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.1, y: 1.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 80237561}
@@ -287,9 +287,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a1297be7b16664a88bf203719da5e4da, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5caa147afbc1af64aac1c4159924ad21, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -363,10 +363,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: this is placehoder text to test
+  m_text: Placeholder
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 29cf41961b6649548978e7ca28d6df32, type: 2}
+  m_sharedMaterial: {fileID: -3726470067612358857, guid: 29cf41961b6649548978e7ca28d6df32, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -390,8 +390,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25
-  m_fontSizeBase: 25
+  m_fontSize: 32
+  m_fontSizeBase: 32
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -497,11 +497,12 @@ MonoBehaviour:
   frame2: {fileID: 1985324333}
   frame3: {fileID: 1501186067}
   lines:
-  - Somewhere in a dark forest a monster captain is defeated
-  - One of the dark lord's wizard appears to appoint captain, no one is fit for the
-    position
-  - The dark lord demands you, a simple slime, to be the new monster captain
-  - Venture onward GubGub for there is a hero that wishes to get rid of all monsters
+  - "Somewhere in the dark forest, a monster captain is slain\u2026"
+  - The dark lord appears to his troops to select a replacement, but can find no
+    one suitable.
+  - Thus, he demands that you, a level 1 slime, fill the role, and venture out towards
+    the kingdom of good.
+  - Onwards, Goopy! Challenge the hero and save your people!
   textSpeed: 0.07
 --- !u!114 &686028888
 MonoBehaviour:
@@ -804,7 +805,7 @@ RectTransform:
   m_GameObject: {fileID: 1985324331}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.1, y: 1.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 80237561}
@@ -812,7 +813,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -0.000015259}
+  m_AnchoredPosition: {x: -0, y: -0.000015259}
   m_SizeDelta: {x: 800, y: 416.96}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1985324333
@@ -835,9 +836,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ca83f9b3fba5948d1b234ee52911fa3e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a46875a08223d8e4cbb68454007c8a2b, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
