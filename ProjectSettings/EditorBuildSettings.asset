@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/OpenCinematic.unity
     guid: c3859c4421e02432495f5ba4cd34087f
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/FishingMinigame.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects: {}

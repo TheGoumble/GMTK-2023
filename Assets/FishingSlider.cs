@@ -34,11 +34,11 @@ public class FishingSlider : MonoBehaviour
         {
             if (pointer_tf.position.x < 2.79 && direction)
             {
-                pointer_tf.position = new Vector2(pointer_tf.position.x + 0.003f, pointer_tf.position.y);
+                pointer_tf.position = new Vector2(pointer_tf.position.x + 0.005f, pointer_tf.position.y);
             }
             else if (pointer_tf.position.x > -2.79 && !direction)
             {
-                pointer_tf.position = new Vector2(pointer_tf.position.x - 0.003f, pointer_tf.position.y);
+                pointer_tf.position = new Vector2(pointer_tf.position.x - 0.005f, pointer_tf.position.y);
             }
             if (pointer_tf.position.x > 2.79 || pointer_tf.position.x < -2.79)
             {
