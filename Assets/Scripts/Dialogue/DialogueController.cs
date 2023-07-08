@@ -41,7 +41,7 @@ public class DialogueController : MonoBehaviour
         wobble.enabled = false;
         speakerWords.enableAutoSizing = true;
         getFileContents();
-        this.gameObject.SetActive(false);
+        //this.gameObject.SetActive(false);
     }
 
     // Public methods --------------------------------------------------------
