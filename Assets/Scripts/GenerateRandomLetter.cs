@@ -12,7 +12,7 @@ public class GenerateRandomLetter : MonoBehaviour
         GenerateLetter();
     }
     private void Update(){
-        GenerateLetter();
+        // GenerateLetter();
     }
     public void GenerateLetter(){
         string alphebet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
