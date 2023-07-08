@@ -84,11 +84,6 @@ public class DialogueController : MonoBehaviour
         lines = linesTXT.text.Split('\n');
     }
 
-    private void setPositionAndScale(string line)  // Sets position and scale of the textbox based on how long the message is
-    {
-        this.transform.position = Vector3.zero;
-    }
-
     // Coroutines --------------------------------------------------------------
     
     IEnumerator DoReadLine(string line)
