@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 // Goes on a gameObject containing the TMP asset and the text box
@@ -14,6 +15,13 @@ public class CutsceneManager : MonoBehaviour
     [SerializeField] private Image[] frames;            // Frames corresponding to linesd
     [SerializeField] private Vector3[] textPositions;   // Where the textbox will be on the screen for each frame
     [SerializeField] private Image nextIndicator;       // The little hand that tells you to move on
+
+    [Header("Scene Transition Stuff")]
+    [SerializeField] public int transitionToSceneNumber;           // The scene to be transitioned to after the cutscene is done
+    [SerializeField] private float cutsceneStartBuffer = 4f;   // How much time to wait after the cutscene ends b4 going to the next scene
+    [SerializeField] private float cutsceneEndBuffer = 6f;   // How much time to wait after the cutscene ends b4 going to the next scene
+    [SerializeField] private TransitionScreen transition;
+
     private string[] lines;
 
     private int currentLine;
@@ -45,9 +53,7 @@ public class CutsceneManager : MonoBehaviour
     // Private methods ----------------------------------------
     private void StartDialogue()
     {
-        this.transform.localPosition = textPositions[currentLine];
-        currentLine = 0;
-        StartCoroutine(TypeLine());
+        StartCoroutine(DoStartCutscene());
     }
 
     private void NextLine()
@@ -68,7 +74,9 @@ public class CutsceneManager : MonoBehaviour
         }
         else
         {
-            gameObject.SetActive(false);
+            StartCoroutine(DoNextScene());
+            //gameObject.SetActive(false);
+            
         }
     }
 
@@ -78,6 +86,14 @@ public class CutsceneManager : MonoBehaviour
     }
 
     // Coroutines ----------------------------------------
+
+    IEnumerator DoStartCutscene()
+    {
+        yield return new WaitForSeconds(cutsceneStartBuffer);
+        this.transform.localPosition = textPositions[currentLine];
+        currentLine = 0;
+        StartCoroutine(TypeLine());
+    }
     IEnumerator TypeLine()
     {
         foreach (char c in lines[currentLine].ToCharArray())
@@ -86,6 +102,15 @@ public class CutsceneManager : MonoBehaviour
             yield return new WaitForSeconds(textSpeed);
         }
         nextIndicator.gameObject.SetActive(true);
+    }
+
+    IEnumerator DoNextScene()
+    {
+        transition.FadeIn();
+        yield return new WaitForSeconds(cutsceneEndBuffer);
+        Debug.Log("Scene should be loading now");
+        SceneManager.LoadScene(transitionToSceneNumber);
+        
     }
 
 
