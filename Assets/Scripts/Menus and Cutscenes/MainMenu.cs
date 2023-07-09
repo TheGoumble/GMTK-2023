@@ -11,6 +11,8 @@ public class MainMenu : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     [SerializeField] private GameObject creditsMenu;
     [SerializeField] private TransitionScreen transitionScreen;
     [SerializeField] private Image pointer;
+    public AudioSource audioSource;
+    public AudioClip mainMenuClip;
 
     private void Start()
     {
@@ -18,27 +20,37 @@ public class MainMenu : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     }
     public void PlayButton()
     {
+        audioSource.clip = mainMenuClip;
+        audioSource.Play();
         StartCoroutine(DoPlayGame());
         
     }
     public void CreditsButton()
     {
+        audioSource.clip = mainMenuClip;
+        audioSource.Play();
         creditsMenu.SetActive(true);
         mainMenu.SetActive(false);
     }
     public void BackToMainMenuButton()
     {
+        audioSource.clip = mainMenuClip;
+        audioSource.Play();
         mainMenu.SetActive(true);
         creditsMenu.SetActive(false);
     }
 
     public void ReturnToTitleScreenButton()
     {
+        audioSource.clip = mainMenuClip;
+        audioSource.Play();
         StartCoroutine(DoReturnToTitle());
     }
     
     public void QuitButton()
     {
+        audioSource.clip = mainMenuClip;
+        audioSource.Play();
         Application.Quit();
     }
 
