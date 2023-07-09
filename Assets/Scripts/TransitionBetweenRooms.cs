@@ -31,8 +31,12 @@ public class TransitionBetweenRooms : MonoBehaviour
         player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         player.GetComponent<PlayerMovement>().enabled = false;
         yield return new WaitForSeconds(2f);
-        battleCam.enabled = true;
-        movementCam.enabled = false;
+        if(sendToBattle){
+            battleCam.enabled = true;
+            movementCam.enabled = false;
+            battleCam.gameObject.GetComponent<AudioListener>().enabled = true;
+            movementCam.GetComponent<AudioListener>().enabled = false;
+        }
         transition.FadeOut();
         CinimaController.GetComponent<CinemachineConfiner>().m_BoundingShape2D = newBoarder;
         player.transform.position = pos.position;

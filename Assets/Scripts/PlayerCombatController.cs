@@ -30,32 +30,34 @@ public class PlayerCombatController : MonoBehaviour
             return;
         }
         else{
-            
             BattleCanvasUI.SetActive(true);
+            if(IsPlayersTurn){
+                QTE.transform.position = AttackingPos.position;
+                moveSelect.SetActive(true);
+                if(QTE.activeInHierarchy){
+                    currentLetterToPress = letterText.text;
+                    if(Input.inputString.ToUpper() == currentLetterToPress){
+                        TimingSucceeded = true;
+                    }
+                }
+            
+            }
+            else{
+                QTE.transform.position = defendingPos.position;
+                confirmScreen.SetActive(false);
+                ItemSelect.SetActive(false);
+                moveSelect.SetActive(false);
+                if(QTE.activeInHierarchy){
+                    currentLetterToPress = letterText.text;
+                    if(Input.inputString.ToUpper() == currentLetterToPress){
+                        goodGuyconmbatController.playerDodged = true;
+                    }
+                }
+            }
+            
         }
 
-        if(IsPlayersTurn){
-            QTE.transform.position = AttackingPos.position;
-            moveSelect.SetActive(true);
-            if(QTE.activeInHierarchy){
-                currentLetterToPress = letterText.text;
-                if(Input.inputString.ToUpper() == currentLetterToPress){
-                    TimingSucceeded = true;
-                }
-            }
-        }
-        else{
-            QTE.transform.position = defendingPos.position;
-            confirmScreen.SetActive(false);
-            ItemSelect.SetActive(false);
-            moveSelect.SetActive(false);
-            if(QTE.activeInHierarchy){
-                currentLetterToPress = letterText.text;
-                if(Input.inputString.ToUpper() == currentLetterToPress){
-                    goodGuyconmbatController.playerDodged = true;
-                }
-            }
-        }
+        
     }
     //================================
     
@@ -92,7 +94,6 @@ public class PlayerCombatController : MonoBehaviour
         confirmScreen.SetActive(false);
         ItemSelect.SetActive(false);
         moveSelect.SetActive(false);
-        PlayerTurnUI.SetActive(false);
         if(currentMove == 1){
             Attack1();
         }
