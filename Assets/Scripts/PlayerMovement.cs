@@ -12,10 +12,34 @@ public class PlayerMovement : MonoBehaviour
     float inputHorizontal;
     float inputVertical;
 
+    [SerializeField] Transform BadlandsSpawn;
+    [SerializeField] Transform IceSpawn;
+    [SerializeField] Transform DesertSpawn;
+    [SerializeField] Transform GrassSpawn;
+
 
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
+        if(GameManager.Instance.GetBiome() != null && GameManager.Instance.GetBiome() != "")
+        {
+            if(GameManager.Instance.GetBiome() == "badlands")
+            {
+                transform.position = BadlandsSpawn.position;
+            }
+            else if (GameManager.Instance.GetBiome() == "grass")
+            {
+                transform.position = GrassSpawn.position;
+            }
+            if (GameManager.Instance.GetBiome() == "ice")
+            {
+                transform.position = IceSpawn.position;
+            }
+            if (GameManager.Instance.GetBiome() == "desert")
+            {
+                transform.position = DesertSpawn.position;
+            }
+        }
     }
     
     void Update()
