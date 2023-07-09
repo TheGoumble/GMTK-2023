@@ -1268,10 +1268,6 @@ MonoBehaviour:
     m_Y: 423
     m_Width: 5
     m_Height: 11
-  - m_X: 91
-    m_Y: 364
-    m_Width: 932
-    m_Height: 59
   - m_X: 48
     m_Y: 563
     m_Width: 25
@@ -1312,18 +1308,6 @@ MonoBehaviour:
     m_Y: 283
     m_Width: 37
     m_Height: 11
-  - m_X: 96
-    m_Y: 353
-    m_Width: 927
-    m_Height: 210
-  - m_X: 132
-    m_Y: 353
-    m_Width: 891
-    m_Height: 280
-  - m_X: 133
-    m_Y: 353
-    m_Width: 890
-    m_Height: 350
   - m_X: 73
     m_Y: 219
     m_Width: 49

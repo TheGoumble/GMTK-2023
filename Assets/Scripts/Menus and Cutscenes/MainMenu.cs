@@ -31,6 +31,12 @@ public class MainMenu : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         mainMenu.SetActive(true);
         creditsMenu.SetActive(false);
     }
+
+    public void ReturnToTitleScreenButton()
+    {
+        StartCoroutine(DoReturnToTitle());
+    }
+    
     public void QuitButton()
     {
         Application.Quit();
@@ -43,6 +49,13 @@ public class MainMenu : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         SceneManager.LoadScene(1); // Load the opening cutscene
     }
 
+    IEnumerator DoReturnToTitle()
+    {
+        transitionScreen.FadeIn();
+        yield return new WaitForSeconds(6f);
+        SceneManager.LoadScene(0); // Load the title screen
+    }
+
     public void OnPointerEnter(PointerEventData eventData)
     {
         pointer.gameObject.SetActive(true);
@@ -52,5 +65,9 @@ public class MainMenu : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         pointer.gameObject.SetActive(false);
     }
+
+    // TODO
+    // Integrate game over scene into health system
+    // CRT shader
 
 }
