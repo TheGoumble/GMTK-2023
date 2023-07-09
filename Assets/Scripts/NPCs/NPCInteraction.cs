@@ -26,7 +26,7 @@ public class NPCInteraction : MonoBehaviour
         for(int i = 0; i < dialogue.lines.Length; i++)
         {
             dialogue.ReadNextLine();
-            yield return new WaitForSeconds(dialogue.waitToReadTime + 2f);
+            yield return new WaitForSeconds(dialogue.waitToReadTime + 1f);
         }
         activeCoroutine = false;
 
