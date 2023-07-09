@@ -12,17 +12,15 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
-  - _ALPHAPREMULTIPLY_ON
-  - _SURFACE_TYPE_TRANSPARENT
+  - _SPECULAR_SETUP
   m_InvalidKeywords: []
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 2027
   stringTagMap:
-    RenderType: Transparent
-  disabledShaderPasses:
-  - DepthOnly
+    RenderType: Opaque
+  disabledShaderPasses: []
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
@@ -36,7 +34,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 57c849b828dea914da7b1acd3cf85b49, type: 3}
+        m_Texture: {fileID: 2800000, guid: 746d4e23dba451b4c97fb4b6feae4b9b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskTex:
@@ -67,7 +65,7 @@ Material:
     m_Floats:
     - _AlphaClip: 0
     - _AlphaToMask: 0
-    - _Blend: 2
+    - _Blend: 0
     - _BlendModePreserveSpecular: 1
     - _CastShadows: 1
     - _Cull: 2
@@ -75,21 +73,21 @@ Material:
     - _DecalMeshDepthBias: 0
     - _DecalMeshViewBias: 0
     - _DrawOrder: 0
-    - _DstBlend: 1
+    - _DstBlend: 0
     - _EnableExternalAlpha: 0
     - _QueueControl: 0
-    - _QueueOffset: 0
+    - _QueueOffset: 27
     - _ReceiveShadows: 1
     - _SrcBlend: 1
-    - _Surface: 1
-    - _WorkflowMode: 1
+    - _Surface: 0
+    - _WorkflowMode: 0
     - _ZTest: 4
-    - _ZWrite: 0
+    - _ZWrite: 1
     - _ZWriteControl: 0
     m_Colors:
     - _Color: {r: 0.02658084, g: 1.2757367, b: 5.6351247, a: 0}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _GlowColor: {r: 36.32964, g: 5.312353, b: 35.873512, a: 1}
+    - _GlowColor: {r: 0.15389305, g: 0.15389305, b: 0.15389305, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &2611965789197077338

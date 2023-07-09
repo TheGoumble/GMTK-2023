@@ -14,6 +14,7 @@ public class PlayerCombatController : MonoBehaviour
     public TextMeshProUGUI letterText;
     private string currentLetterToPress = " ";
     private HealthController healthController;
+    public DGCombatController goodGuyconmbatController;
     // Start is called before the first frame update
 
     void Start(){
@@ -32,8 +33,14 @@ public class PlayerCombatController : MonoBehaviour
             }
         }
         else{
-           
-            
+            PlayerTurnUI.SetActive(false);
+
+            if(QTE.activeInHierarchy){
+                currentLetterToPress = letterText.text;
+                if(Input.inputString.ToUpper() == currentLetterToPress){
+                    goodGuyconmbatController.playerDodged = true;
+                }
+            }
         }
     }
     //================================
@@ -150,6 +157,7 @@ public class PlayerCombatController : MonoBehaviour
 
     public void EndAnimations(){
         IsPlayersTurn = false;
+        goodGuyconmbatController.isDGTurn = true;
         playerAnimator.SetBool("Attack1", false);
         playerAnimator.SetBool("Attack2", false);
     }

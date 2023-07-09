@@ -32,6 +32,6 @@ public class HealthController : MonoBehaviour
         healthText.text = health.ToString();
     }
     public void Death(){
-
+        
     }
 }
