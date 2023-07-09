@@ -20,6 +20,7 @@ public class DGCombatController : MonoBehaviour
     public PlayerCombatController playerCombatController;
 
 
+
     void Awake()
     {
         if(currentLvl == 1){
@@ -33,7 +34,9 @@ public class DGCombatController : MonoBehaviour
             int randomAttack = Random.Range(1, 3);
             if(randomAttack == 1){
                 GDAnimator.SetBool("Attack1", true);
-                dmg = 3;
+
+                
+                
             }
             else{
                 GDAnimator.SetBool("Attack2", true);

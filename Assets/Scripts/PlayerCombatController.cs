@@ -31,6 +31,7 @@ public class PlayerCombatController : MonoBehaviour
         }
         else{
             BattleCanvasUI.SetActive(true);
+            PlayerTurnUI.SetActive(true);
             if(IsPlayersTurn){
                 QTE.transform.position = AttackingPos.position;
                 moveSelect.SetActive(true);
