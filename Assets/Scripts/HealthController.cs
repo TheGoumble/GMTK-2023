@@ -11,8 +11,12 @@ public class HealthController : MonoBehaviour
     public Slider healthBar;
     public TextMeshProUGUI healthText, maxHealthText;
     public TransitionScreen transition;
+    private ParticleSystem DeathParticles;
+    private Animator DeathAnimation;
     void Start(){
         SetHealth();
+        DeathParticles = transform.GetChild(0).GetComponent<ParticleSystem>();
+        DeathAnimation = GetComponent<Animator>();
     }
 
     public void SetHealth(){
@@ -41,6 +45,12 @@ public class HealthController : MonoBehaviour
     {
         // You can add whatever animations or control freezes or things you want before this,
         // but it will always end with this scene change
+
+        DeathAnimation.SetTrigger("Died");
+        yield return new WaitForSeconds(2.5f);
+        DeathParticles.Play();
+        gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = false;
         transition.FadeIn();
         yield return new WaitForSeconds(6f);
         SceneManager.LoadScene("99_GameOver");

@@ -12,6 +12,7 @@ public class DGCombatController : MonoBehaviour
     public bool dodging = false;
     public bool isDGTurn = false;
     public bool playerDodged = false;
+    private bool madeMove = false;
     public Transform startMarker, endMarker;
     public GameObject QTE;
     public TextMeshProUGUI letter;
@@ -28,16 +29,17 @@ public class DGCombatController : MonoBehaviour
     }
 
     void Update(){
-        if(isDGTurn){
+        if(isDGTurn && !madeMove){
             int randomAttack = Random.Range(1, 3);
             if(randomAttack == 1){
                 GDAnimator.SetBool("Attack1", true);
-                dmg = 1;
+                dmg = 3;
             }
             else{
                 GDAnimator.SetBool("Attack2", true);
-                dmg = 3;
+                dmg = 1;
             }
+            madeMove = true;
                 
             
             
@@ -48,6 +50,7 @@ public class DGCombatController : MonoBehaviour
         GDAnimator.SetBool("Attack1", false);
         GDAnimator.SetBool("Attack2", false);
         isDGTurn = false;
+        madeMove = false;
         playerCombatController.IsPlayersTurn = true;
     }
 
@@ -61,8 +64,11 @@ public class DGCombatController : MonoBehaviour
         QTE.SetActive(false);
     }
     public void HitPlayer(int amount){
-        if(!playerDodged)
+        if(!playerDodged){
+            Debug.Log(dmg);
             playerCombatController.gameObject.GetComponent<HealthController>().ChangeHealth(-dmg);
+            playerCombatController.gameObject.GetComponent<Animator>().SetBool("GotHit", true);
+        }
         else    
             Debug.Log("YOU DODGED");
         

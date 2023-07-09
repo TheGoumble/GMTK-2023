@@ -11,6 +11,8 @@ public class PlayerCombatController : MonoBehaviour
     public Animator playerAnimator;
     private int currentlySelectedItem = 1000;
     private int currentMove;
+    private int dmg = 0;
+    private bool TimingSucceeded = false;
     public TextMeshProUGUI letterText;
     private string currentLetterToPress = " ";
     private HealthController healthController;
@@ -21,20 +23,27 @@ public class PlayerCombatController : MonoBehaviour
         healthController = gameObject.GetComponent<HealthController>();
     }
     void Update(){
-        if(!InCombat) return;
-        if(IsPlayersTurn){
+        if(!InCombat){
+            PlayerTurnUI.SetActive(false);
+            return;
+        }
+        else{
             PlayerTurnUI.SetActive(true);
+        }
+
+        if(IsPlayersTurn){
             moveSelect.SetActive(true);
             if(QTE.activeInHierarchy){
                 currentLetterToPress = letterText.text;
                 if(Input.inputString.ToUpper() == currentLetterToPress){
-                    Debug.Log("Bruhaef");
+                    TimingSucceeded = true;
                 }
             }
         }
         else{
-            PlayerTurnUI.SetActive(false);
-
+            confirmScreen.SetActive(false);
+            ItemSelect.SetActive(false);
+            moveSelect.SetActive(false);
             if(QTE.activeInHierarchy){
                 currentLetterToPress = letterText.text;
                 if(Input.inputString.ToUpper() == currentLetterToPress){
@@ -110,10 +119,12 @@ public class PlayerCombatController : MonoBehaviour
     private void Attack1(){
         //play attck1 animation
         playerAnimator.SetBool("Attack1", true);
+        dmg = 3;
     }
 
     private void Attack2(){
         playerAnimator.SetBool("Attack2", true);
+        dmg = 1;
     }
 
     private void TryCallBackup(){
@@ -148,7 +159,6 @@ public class PlayerCombatController : MonoBehaviour
         GameObject slimeBall = Instantiate(slimeBallAttack, gameObject.transform);
         slimeBall.GetComponent<Rigidbody2D>().AddForce(new Vector2(-1f, 0f)*250, ForceMode2D.Force);
         StartCoroutine(DestroySlimeBall(slimeBall));
-        gameObject.GetComponent<HealthController>().ChangeHealth(-2);
     }
 
     public void HitTimeOver(){
@@ -158,6 +168,7 @@ public class PlayerCombatController : MonoBehaviour
     public void EndAnimations(){
         IsPlayersTurn = false;
         goodGuyconmbatController.isDGTurn = true;
+
         playerAnimator.SetBool("Attack1", false);
         playerAnimator.SetBool("Attack2", false);
     }
@@ -165,5 +176,20 @@ public class PlayerCombatController : MonoBehaviour
     IEnumerator DestroySlimeBall(GameObject ball){
         yield return new WaitForSeconds(5f);
         Destroy(ball);
+    }
+
+    public void DealDamage(){
+        if(!TimingSucceeded){
+            return;
+        }
+        goodGuyconmbatController.gameObject.GetComponent<Animator>().SetBool("GotHit", true);
+        StartCoroutine(StopTakingDmg());
+        goodGuyconmbatController.gameObject.GetComponent<DGHealth>().ChangeHealth(-dmg);
+        TimingSucceeded = false;
+    }
+
+    IEnumerator StopTakingDmg(){
+        yield return new WaitForSeconds(0.25f);
+        goodGuyconmbatController.gameObject.GetComponent<Animator>().SetBool("GotHit", false);
     }
 }
