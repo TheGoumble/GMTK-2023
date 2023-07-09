@@ -6,9 +6,7 @@ using System;
 
 public class TransitionBetweenRooms : MonoBehaviour
 {
-    public Collider2D newBoarder;
     public Transform pos;
-    public Animator RoomChangerAnimator;
     public GameObject CinimaController, combatPlayer;
     public bool sendToBattle;
     public Camera battleCam, movementCam;
@@ -38,11 +36,10 @@ public class TransitionBetweenRooms : MonoBehaviour
             movementCam.GetComponent<AudioListener>().enabled = false;
         }
         transition.FadeOut();
-        CinimaController.GetComponent<CinemachineConfiner>().m_BoundingShape2D = newBoarder;
         player.transform.position = pos.position;
         player.GetComponent<PlayerMovement>().enabled = true;
         player.SetActive(true);
         combatPlayer.GetComponent<PlayerCombatController>().InCombat = true;
-        yield return null;
+        Destroy(gameObject);
     }
 }
