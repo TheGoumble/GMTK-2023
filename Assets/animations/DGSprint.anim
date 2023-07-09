@@ -222,7 +222,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 3.2333333
+    m_StopTime: 3.3
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -413,7 +413,7 @@ AnimationClip:
   m_HasGenericRootTransform: 1
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 1
+  - time: 0.5
     functionName: EnablePlayerDodgeWindow
     data: 
     objectReferenceParameter: {fileID: 0}
@@ -441,14 +441,14 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 3.1833334
+  - time: 3.1333334
     functionName: FlipCharacter
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 3.2166667
+  - time: 3.3
     functionName: EndAnimations
     data: 
     objectReferenceParameter: {fileID: 0}
