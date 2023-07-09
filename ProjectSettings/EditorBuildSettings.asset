@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/FishingMinigame.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
+    path: Assets/Scenes/98_Victory.unity
+    guid: 702b9f55c918b9545b74a4e93233881c
+  - enabled: 1
     path: Assets/Scenes/99_GameOver.unity
     guid: ae39482582890b34b8036f9a72c68faf
   m_configObjects: {}
