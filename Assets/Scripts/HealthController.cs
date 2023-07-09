@@ -17,6 +17,11 @@ public class HealthController : MonoBehaviour
         SetHealth();
         DeathParticles = transform.GetChild(0).GetComponent<ParticleSystem>();
         DeathAnimation = GetComponent<Animator>();
+        if(GameManager.Instance.GetHealthToHeal() > 0)
+        {
+            ChangeHealth(GameManager.Instance.GetHealthToHeal());
+            GameManager.Instance.SetHealthToHeal(0);
+        }
     }
 
     public void SetHealth(){
