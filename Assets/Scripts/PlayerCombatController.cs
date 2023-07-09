@@ -2,19 +2,38 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerCombatController : MonoBehaviour
 {
-    private bool InCombat, IsPlayersTurn = false;
-    public GameObject moveSelect, ItemSelect, confirmScreen, backUpPlayer;
+    public bool InCombat, IsPlayersTurn = true;
+    public GameObject PlayerTurnUI, moveSelect, ItemSelect, confirmScreen, backUpPlayer, QTE, slimeBallAttack;
+    public Animator playerAnimator;
     private int currentlySelectedItem = 1000;
     private int currentMove;
+    public TextMeshProUGUI letterText;
+    private string currentLetterToPress = " ";
+    private HealthController healthController;
     // Start is called before the first frame update
+
+    void Start(){
+        healthController = gameObject.GetComponent<HealthController>();
+    }
     void Update(){
         if(!InCombat) return;
-
         if(IsPlayersTurn){
+            PlayerTurnUI.SetActive(true);
             moveSelect.SetActive(true);
+            if(QTE.activeInHierarchy){
+                currentLetterToPress = letterText.text;
+                if(Input.inputString.ToUpper() == currentLetterToPress){
+                    Debug.Log("Bruhaef");
+                }
+            }
+        }
+        else{
+           
+            
         }
     }
     //================================
@@ -52,6 +71,7 @@ public class PlayerCombatController : MonoBehaviour
         confirmScreen.SetActive(false);
         ItemSelect.SetActive(false);
         moveSelect.SetActive(false);
+        PlayerTurnUI.SetActive(false);
         if(currentMove == 1){
             Attack1();
         }
@@ -82,12 +102,11 @@ public class PlayerCombatController : MonoBehaviour
 
     private void Attack1(){
         //play attck1 animation
-        Debug.Log("Bruh");
-        IsPlayersTurn = false;
+        playerAnimator.SetBool("Attack1", true);
     }
+
     private void Attack2(){
-        Debug.Log("Bruh2");
-        IsPlayersTurn = false;
+        playerAnimator.SetBool("Attack2", true);
     }
 
     private void TryCallBackup(){
@@ -102,16 +121,41 @@ public class PlayerCombatController : MonoBehaviour
     private void UseItem(){
         //useItem
         Debug.Log("Bruh3");
-        IsPlayersTurn = false;
+
     }
 
     private void BackUpSucceeded(){
         Debug.Log("Succeeded");
         GameObject backup = Instantiate(backUpPlayer);
-        IsPlayersTurn = false;
     }
     private void BackUpFailed(){
         Debug.Log("Failed");
+    }
+
+    public void SetLetterActive(){
+        QTE.SetActive(true);
+        letterText.GetComponent<GenerateRandomLetter>().GenerateLetter();
+    }
+
+    public void SlimeBallAttack(){
+        GameObject slimeBall = Instantiate(slimeBallAttack, gameObject.transform);
+        slimeBall.GetComponent<Rigidbody2D>().AddForce(new Vector2(-1f, 0f)*250, ForceMode2D.Force);
+        StartCoroutine(DestroySlimeBall(slimeBall));
+        gameObject.GetComponent<HealthController>().ChangeHealth(-2);
+    }
+
+    public void HitTimeOver(){
+        QTE.SetActive(false);
+    }
+
+    public void EndAnimations(){
         IsPlayersTurn = false;
+        playerAnimator.SetBool("Attack1", false);
+        playerAnimator.SetBool("Attack2", false);
+    }
+    
+    IEnumerator DestroySlimeBall(GameObject ball){
+        yield return new WaitForSeconds(5f);
+        Destroy(ball);
     }
 }

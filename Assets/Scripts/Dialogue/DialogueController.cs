@@ -41,7 +41,7 @@ public class DialogueController : MonoBehaviour
         wobble.enabled = false;
         speakerWords.enableAutoSizing = true;
         getFileContents();
-        this.gameObject.SetActive(false);
+        //this.gameObject.SetActive(false);
     }
 
     // Public methods --------------------------------------------------------
@@ -82,11 +82,6 @@ public class DialogueController : MonoBehaviour
     private void getFileContents()  // Splits up the text file into usable lines
     {
         lines = linesTXT.text.Split('\n');
-    }
-
-    private void setPositionAndScale(string line)  // Sets position and scale of the textbox based on how long the message is
-    {
-        this.transform.position = Vector3.zero;
     }
 
     // Coroutines --------------------------------------------------------------
