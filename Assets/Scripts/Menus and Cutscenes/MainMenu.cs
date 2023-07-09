@@ -53,7 +53,7 @@ public class MainMenu : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         transitionScreen.FadeIn();
         yield return new WaitForSeconds(6f);
-        SceneManager.LoadScene(1); // Load the title screen
+        SceneManager.LoadScene(0); // Load the title screen
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -65,5 +65,9 @@ public class MainMenu : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         pointer.gameObject.SetActive(false);
     }
+
+    // TODO
+    // Integrate game over scene into health system
+    // CRT shader
 
 }

@@ -34,4 +34,9 @@ public class HealthController : MonoBehaviour
     public void Death(){
 
     }
+
+    IEnumerator DoDeath()
+    {
+        yield return null;
+    }
 }

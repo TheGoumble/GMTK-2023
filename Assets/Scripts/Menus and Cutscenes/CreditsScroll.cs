@@ -4,15 +4,27 @@ using UnityEngine;
 
 public class CreditsScroll : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] private float creditsStep = 80f;
+    [SerializeField] private float scrollTime = 200f;
+    [SerializeField] GameObject escapeButton;
     void Start()
     {
-        
+        escapeButton.SetActive(false);
+        StartCoroutine(DoCreditsScroll());
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator DoCreditsScroll()
     {
+        yield return new WaitForSeconds(6f); // Wait for screen fade in
+        escapeButton.SetActive(true);
+        while(scrollTime > 0)
+        {
+            this.transform.position = new Vector3(transform.position.x, transform.position.y + creditsStep * Time.deltaTime, transform.position.z);
+            scrollTime -= Time.deltaTime;
+            yield return new WaitForSeconds(.001f);
+        }
         
+        yield return null;
     }
+
 }
