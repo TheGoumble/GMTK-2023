@@ -14,7 +14,7 @@ public class PlayerCombatController : MonoBehaviour
     private int currentMove;
     private int dmg = 0;
     private bool TimingSucceeded = false;
-    public TextMeshProUGUI letterText;
+    public TextMeshProUGUI letterText, moveName;
     private string currentLetterToPress = " ";
     private HealthController healthController;
     public DGCombatController goodGuyconmbatController;
@@ -123,11 +123,13 @@ public class PlayerCombatController : MonoBehaviour
         //play attck1 animation
         playerAnimator.SetBool("Attack1", true);
         dmg = 3;
+        moveName.text = "Slam?";
     }
 
     private void Attack2(){
         playerAnimator.SetBool("Attack2", true);
         dmg = 1;
+        moveName.text ="SlimeBall?";
     }
 
     private void TryCallBackup(){

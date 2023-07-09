@@ -20,6 +20,7 @@ public class DGHealth : MonoBehaviour
 
     public void ResetHealth(){
         health = maxHealth;
+        gameObject.GetComponent<Animator>().enabled = true;
     }
 
     public void ChangeHealth(int amount){
@@ -49,6 +50,7 @@ public class DGHealth : MonoBehaviour
         yield return new WaitForSeconds(2.5f);
         DeathParticles.Play();
         gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        gameObject.GetComponent<Animator>().enabled = false;
         transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = false;
         DGAnimator.SetBool("DeathEffect", false);
         transition.FadeIn();
