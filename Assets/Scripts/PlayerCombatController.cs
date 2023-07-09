@@ -7,7 +7,7 @@ using TMPro;
 public class PlayerCombatController : MonoBehaviour
 {
     public bool InCombat, IsPlayersTurn = true;
-    public GameObject PlayerTurnUI, moveSelect, ItemSelect, confirmScreen, QTE, slimeBallAttack;
+    public GameObject PlayerTurnUI, moveSelect, ItemSelect, confirmScreen, QTE, slimeBallAttack, BattleCanvasUI;
     public Animator playerAnimator;
     public Transform defendingPos, AttackingPos;
     private int currentlySelectedItem = 1000;
@@ -26,14 +26,16 @@ public class PlayerCombatController : MonoBehaviour
     void Update(){
         if(!InCombat){
             PlayerTurnUI.SetActive(false);
+            BattleCanvasUI.SetActive(false);
             return;
         }
         else{
-            QTE.transform.position = AttackingPos.position;
-            PlayerTurnUI.SetActive(true);
+            
+            BattleCanvasUI.SetActive(true);
         }
 
         if(IsPlayersTurn){
+            QTE.transform.position = AttackingPos.position;
             moveSelect.SetActive(true);
             if(QTE.activeInHierarchy){
                 currentLetterToPress = letterText.text;

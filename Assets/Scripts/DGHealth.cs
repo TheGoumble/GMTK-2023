@@ -47,6 +47,7 @@ public class DGHealth : MonoBehaviour
         // but it will always end with this scene change
 
         DGAnimator.SetBool("DeathEffect", true);
+        player.GetComponent<PlayerCombatController>().BattleCanvasUI.SetActive(true);
         yield return new WaitForSeconds(2.5f);
         DeathParticles.Play();
         gameObject.GetComponent<SpriteRenderer>().enabled = false;
