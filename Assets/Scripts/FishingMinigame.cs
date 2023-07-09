@@ -12,6 +12,7 @@ public class FishingMinigame : MonoBehaviour
     private bool moving;
 
     [SerializeField] GameObject fish_go;
+    [SerializeField] GameObject shadow_go;
     [SerializeField] GameObject pointer;
     [SerializeField] GameObject slider_go;
 
@@ -22,10 +23,12 @@ public class FishingMinigame : MonoBehaviour
     [SerializeField] GameObject snow_go;
     [SerializeField] GameObject badlands_go;
 
+    //pp is Praise Particles, hp is Health Particles
     [SerializeField] GameObject pp_go;
     [SerializeField] GameObject text_go;
     [SerializeField] GameObject hp_go;
     [SerializeField] GameObject num_go;
+    [SerializeField] GameObject plus_go;
 
     private Rigidbody2D fish_rb;
     private Rigidbody2D player_rb;
@@ -38,6 +41,7 @@ public class FishingMinigame : MonoBehaviour
 
     private TMP_Text text;
     private TMP_Text number;
+    private TMP_Text plus;
 
     public Sprite[] terribleFish;
     public Sprite[] badFish;
@@ -51,7 +55,7 @@ public class FishingMinigame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        //Assigning values
         player_rb = GetComponent<Rigidbody2D>();
         fish_rb = fish_go.gameObject.GetComponent<Rigidbody2D>();
 
@@ -67,8 +71,11 @@ public class FishingMinigame : MonoBehaviour
 
         text = text_go.GetComponent<TMP_Text>();
         number = num_go.GetComponent<TMP_Text>();
+        plus = plus_go.GetComponent<TMP_Text>();
 
         biome = biome.ToLower();
+
+        //Activating correct biome grid
         if (biome == "grass")
         {
             grass_go.SetActive(true);
@@ -102,19 +109,26 @@ public class FishingMinigame : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        //Reset
         if (Input.GetKeyDown(KeyCode.D))
         {
             ResetMinigame();
         }
 
+        //Jump
         if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) && jumpable)
         {
             Jump();
         }
+        //Random updates
+        shadow_go.transform.position = new Vector2(player_rb.transform.position.x, -0.14f);
+        
     }
 
     void FixedUpdate()
     {
+        GetComponent<Animator>().SetFloat("yVelocity", player_rb.velocity.y);
+        //If moving is true, allow the slider to move
         if (moving)
         {
             if (pointer_tf.position.x < 2.79 && direction)
@@ -135,7 +149,7 @@ public class FishingMinigame : MonoBehaviour
     // When the slime hits the ground
     private void OnCollisionEnter2D(Collision2D collision)
     {
-
+        //If slime is not jumpable when it collides, display fish
         if (!jumpable)
         {
             fish_go.transform.position = gameObject.transform.position;
@@ -162,7 +176,7 @@ public class FishingMinigame : MonoBehaviour
             {
                 fish_go.GetComponent<SpriteRenderer>().sprite = goodFish[Random.Range(0, 8)];
             }
-            else if (health_healed == 4)
+            else if (health_healed == 5)
             {
                 fish_go.GetComponent<SpriteRenderer>().sprite = perfectFish[Random.Range(0, 6)];
             }
@@ -171,11 +185,15 @@ public class FishingMinigame : MonoBehaviour
     //Jump function
     void Jump()
     {
+        //Force jump
+
+
         player_rb.AddForce(new Vector2(320, 450));
 
         jumpable = false;
         moving = false;
 
+        //When the player jumps, take location of slider
         if ((pointer_tf.position.x >= -2.79 && pointer_tf.position.x < -1.895) || (pointer_tf.position.x <= 2.79 && pointer_tf.position.x > 1.895))
         {
             text.text = "TERRIBLE...";
@@ -212,7 +230,8 @@ public class FishingMinigame : MonoBehaviour
             number.color = new Color(0f, 0.65f, 0.4f, 1f);
         }
         pp.Play();
-        number.text = "+" + health_healed.ToString();
+        number.text = health_healed.ToString();
+        plus.color = number.color;
         jumpable = false;
     }
 
