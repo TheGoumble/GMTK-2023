@@ -17,12 +17,12 @@ public class DialogueController : MonoBehaviour
     [Header("Textbox Details")]
     [SerializeField] private float xOffset = 1f;    // Offset of text bubble from parent
     [SerializeField] private float yOffset = 1f;
-    [SerializeField] private float waitToReadTime = 3f; // How long the textbox should remain onscreen after it'sdone reading
+    [SerializeField] public float waitToReadTime = 3f; // How long the textbox should remain onscreen after it's done reading
     [Header("Dialogue File")]
     [SerializeField] private TextAsset linesTXT;       // .txt file for lines
 
     private Transform parent;                       // Transform of the parent for positioning
-    private string[] lines;                         // The actual lines in a usable form
+    public string[] lines;                         // The actual lines in a usable form
     private int currentLine = 0;
 
     private void Start()

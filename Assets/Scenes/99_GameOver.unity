@@ -990,7 +990,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   creditsStep: 0.4
-  scrollTime: 200
+  scrollTime: 266
   escapeButton: {fileID: 1018722816}
 --- !u!1 &1018722816
 GameObject:
