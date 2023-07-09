@@ -8,7 +8,7 @@ public class DGCombatController : MonoBehaviour
 {
     // Start is called before the first frame update
     private int currentLvl = 1;
-    private int health, dmg;
+    public int health, dmg;
     public bool dodging = false;
     public bool isDGTurn = false;
     public bool playerDodged = false;
