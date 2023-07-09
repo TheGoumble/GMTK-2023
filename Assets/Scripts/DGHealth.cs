@@ -52,12 +52,15 @@ public class DGHealth : MonoBehaviour
         DeathParticles.Play();
         gameObject.GetComponent<SpriteRenderer>().enabled = false;
         gameObject.GetComponent<Animator>().enabled = false;
+        
         transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = false;
         DGAnimator.SetBool("DeathEffect", false);
         transition.FadeIn();
         yield return new WaitForSeconds(6f);
         combatCamera.enabled = false;
         movementCamera.enabled = true;
+        combatCamera.gameObject.GetComponent<AudioListener>().enabled = false;
+        movementCamera.GetComponent<AudioListener>().enabled = true;
         transition.FadeOut();
         yield return null;
     }
