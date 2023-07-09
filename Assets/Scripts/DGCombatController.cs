@@ -63,11 +63,12 @@ public class DGCombatController : MonoBehaviour
     public void ClosePlayerDodgeWindow(){
         QTE.SetActive(false);
     }
-    public void HitPlayer(int amount){
+    public void HitPlayer(){
         if(!playerDodged){
             Debug.Log(dmg);
             playerCombatController.gameObject.GetComponent<HealthController>().ChangeHealth(-dmg);
             playerCombatController.gameObject.GetComponent<Animator>().SetBool("GotHit", true);
+            StartCoroutine(StopHitEffect());
         }
         else    
             Debug.Log("YOU DODGED");
@@ -76,5 +77,11 @@ public class DGCombatController : MonoBehaviour
 
     public void FlipCharacter(){
         gameObject.GetComponent<SpriteRenderer>().flipX = !gameObject.GetComponent<SpriteRenderer>().flipX;
+    }
+
+    IEnumerator StopHitEffect(){
+        yield return new WaitForSeconds(0.25f);
+        playerCombatController.gameObject.GetComponent<Animator>().SetBool("GotHit", false);
+
     }
 }

@@ -7,8 +7,9 @@ using TMPro;
 public class PlayerCombatController : MonoBehaviour
 {
     public bool InCombat, IsPlayersTurn = true;
-    public GameObject PlayerTurnUI, moveSelect, ItemSelect, confirmScreen, backUpPlayer, QTE, slimeBallAttack;
+    public GameObject PlayerTurnUI, moveSelect, ItemSelect, confirmScreen, QTE, slimeBallAttack;
     public Animator playerAnimator;
+    public Transform defendingPos, AttackingPos;
     private int currentlySelectedItem = 1000;
     private int currentMove;
     private int dmg = 0;
@@ -28,6 +29,7 @@ public class PlayerCombatController : MonoBehaviour
             return;
         }
         else{
+            QTE.transform.position = AttackingPos.position;
             PlayerTurnUI.SetActive(true);
         }
 
@@ -41,6 +43,7 @@ public class PlayerCombatController : MonoBehaviour
             }
         }
         else{
+            QTE.transform.position = defendingPos.position;
             confirmScreen.SetActive(false);
             ItemSelect.SetActive(false);
             moveSelect.SetActive(false);
@@ -144,7 +147,7 @@ public class PlayerCombatController : MonoBehaviour
 
     private void BackUpSucceeded(){
         Debug.Log("Succeeded");
-        GameObject backup = Instantiate(backUpPlayer);
+        
     }
     private void BackUpFailed(){
         Debug.Log("Failed");
