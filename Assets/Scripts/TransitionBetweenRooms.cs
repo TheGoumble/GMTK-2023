@@ -20,6 +20,7 @@ public class TransitionBetweenRooms : MonoBehaviour
                 battleCam.enabled = true;
                 movementCam.enabled = false;
                 col.gameObject.GetComponent<PlayerMovement>().enabled = false;
+                col.gameObject.SetActive(false);
             }
             
         }
@@ -34,7 +35,7 @@ public class TransitionBetweenRooms : MonoBehaviour
         yield return new WaitForSeconds(2f);
         CinimaController.GetComponent<CinemachineConfiner>().m_BoundingShape2D = newBoarder;
         player.transform.position = pos.position;
-        if(!sendToBattle)
-            player.GetComponent<PlayerMovement>().enabled = true;
+        col.gameObject.GetComponent<PlayerMovement>().enabled = true;
+        player.SetActive(true);
     }
 }
