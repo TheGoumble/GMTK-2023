@@ -1,25 +1,43 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class FishingMinigame : MonoBehaviour
 {
 
-    private Rigidbody2D rb;
+
     private bool jumpable;
+    private bool direction;
+    private bool moving;
+
     [SerializeField] GameObject fish_go;
+    [SerializeField] GameObject pointer;
     [SerializeField] GameObject slider_go;
+
     [SerializeField] GameObject splash_go;
+
     [SerializeField] GameObject grass_go;
     [SerializeField] GameObject desert_go;
     [SerializeField] GameObject snow_go;
     [SerializeField] GameObject badlands_go;
-    [SerializeField] GameObject hp_go;
 
-    private ParticleSystem splash;
+    [SerializeField] GameObject pp_go;
+    [SerializeField] GameObject text_go;
+    [SerializeField] GameObject hp_go;
+    [SerializeField] GameObject num_go;
+
     private Rigidbody2D fish_rb;
-    private int tier;
+    private Rigidbody2D player_rb;
+
     private ParticleSystem hp;
+    private ParticleSystem pp;
+    private ParticleSystem splash;
+
+    private Transform pointer_tf;
+
+    private TMP_Text text;
+    private TMP_Text number;
 
     public Sprite[] terribleFish;
     public Sprite[] badFish;
@@ -27,19 +45,30 @@ public class FishingMinigame : MonoBehaviour
     public Sprite[] goodFish;
     public Sprite[] perfectFish;
 
+    public int health_healed;
     public string biome;
 
     // Start is called before the first frame update
     void Start()
     {
 
-        rb = GetComponent<Rigidbody2D>();
-        jumpable = true;
+        player_rb = GetComponent<Rigidbody2D>();
         fish_rb = fish_go.gameObject.GetComponent<Rigidbody2D>();
+
+        jumpable = true;
+        direction = true;
+        moving = true;
+
         splash = splash_go.GetComponent<ParticleSystem>();
-        biome = biome.ToLower();
+        pp = pp_go.GetComponent<ParticleSystem>();
         hp = hp_go.GetComponent<ParticleSystem>();
 
+        pointer_tf = pointer.GetComponent<Transform>();
+
+        text = text_go.GetComponent<TMP_Text>();
+        number = num_go.GetComponent<TMP_Text>();
+
+        biome = biome.ToLower();
         if (biome == "grass")
         {
             grass_go.SetActive(true);
@@ -71,19 +100,35 @@ public class FishingMinigame : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (Input.GetKeyDown(KeyCode.D))
         {
             ResetMinigame();
         }
 
-        tier = slider_go.GetComponent<FishingSlider>().tier;
-
-        if (Input.GetKeyDown(KeyCode.Space) && jumpable)
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) && jumpable)
         {
-            rb.AddForce(new Vector2(320,450));
-            jumpable = false;
+            Jump();
+        }
+    }
+
+    void FixedUpdate()
+    {
+        if (moving)
+        {
+            if (pointer_tf.position.x < 2.79 && direction)
+            {
+                pointer_tf.position = new Vector2(pointer_tf.position.x + 0.1f, pointer_tf.position.y);
+            }
+            else if (pointer_tf.position.x > -2.79 && !direction)
+            {
+                pointer_tf.position = new Vector2(pointer_tf.position.x - 0.1f, pointer_tf.position.y);
+            }
+            if (pointer_tf.position.x > 2.79 || pointer_tf.position.x < -2.79)
+            {
+                direction = !direction;
+            }
         }
     }
 
@@ -96,37 +141,87 @@ public class FishingMinigame : MonoBehaviour
             fish_go.transform.position = gameObject.transform.position;
             fish_rb.AddForce(new Vector2(0f, 200f));
             fish_go.GetComponent<SpriteRenderer>().enabled = true;
-            splash_go.transform.position = rb.transform.position;
+            splash_go.transform.position = player_rb.transform.position;
             splash.Play();
             hp_go.transform.position = fish_go.transform.position;
             hp.Play();
 
-            if (tier == 1)
+            if (health_healed == 0)
             {
                 fish_go.GetComponent <SpriteRenderer>().sprite = terribleFish[Random.Range(0,4)];
             }
-            else if (tier == 2)
+            else if (health_healed == 1)
             {
                 fish_go.GetComponent<SpriteRenderer>().sprite = badFish[Random.Range(0, 4)];
             }
-            else if (tier == 3)
+            else if (health_healed == 2)
             {
                 fish_go.GetComponent<SpriteRenderer>().sprite = decentFish[Random.Range(0, 7)];
             }
-            else if (tier == 4)
+            else if (health_healed == 3)
             {
                 fish_go.GetComponent<SpriteRenderer>().sprite = goodFish[Random.Range(0, 8)];
             }
-            else if (tier == 5)
+            else if (health_healed == 4)
             {
                 fish_go.GetComponent<SpriteRenderer>().sprite = perfectFish[Random.Range(0, 6)];
             }
         }
     }
+    //Jump function
+    void Jump()
+    {
+        player_rb.AddForce(new Vector2(320, 450));
+
+        jumpable = false;
+        moving = false;
+
+        if ((pointer_tf.position.x >= -2.79 && pointer_tf.position.x < -1.895) || (pointer_tf.position.x <= 2.79 && pointer_tf.position.x > 1.895))
+        {
+            text.text = "TERRIBLE...";
+            health_healed = 0;
+            text.color = new Color(1f, 0.5f, 0.5f, 1f);
+            number.color = new Color(1f, 0.5f, 0.5f, 1f);
+        }
+        else if ((pointer_tf.position.x >= -1.895 && pointer_tf.position.x < -1.227) || (pointer_tf.position.x <= 1.895 && pointer_tf.position.x > 1.227))
+        {
+            text.text = "BAD";
+            health_healed = 1;
+            text.color = new Color(0.9f, 0.2f, 0.1f, 1f);
+            number.color = new Color(0.9f, 0.2f, 0.1f, 1f);
+        }
+        else if ((pointer_tf.position.x >= -1.227 && pointer_tf.position.x < -0.618) || (pointer_tf.position.x <= 1.227 && pointer_tf.position.x > 0.618))
+        {
+            text.text = "DECENT";
+            health_healed = 2;
+            text.color = new Color(1f, 0.64f, 0f, 1f);
+            number.color = new Color(1f, 0.64f, 0f, 1f);
+        }
+        else if ((pointer_tf.position.x >= -0.618 && pointer_tf.position.x < -0.161) || (pointer_tf.position.x <= 0.618 && pointer_tf.position.x > 0.161))
+        {
+            text.text = "GOOD!";
+            health_healed = 3;
+            text.color = new Color(0.6f, 0.7f, 0.1f, 1f);
+            number.color = new Color(0.6f, 0.7f, 0.1f, 1f);
+        }
+        else
+        {
+            text.text = "PERFECT!!";
+            health_healed = 5;
+            text.color = new Color(0f, 0.65f, 0.4f, 1f);
+            number.color = new Color(0f, 0.65f, 0.4f, 1f);
+        }
+        pp.Play();
+        number.text = "+" + health_healed.ToString();
+        jumpable = false;
+    }
+
+    //Resets the minigame, mainly for debugging
     void ResetMinigame()
     {
-        rb.position = new Vector2(-4.88f, 0.257f);
+        player_rb.position = new Vector2(-4.88f, 0.257f);
         fish_go.GetComponent<SpriteRenderer>().sprite = null;
         jumpable = true;
+        moving = true;
     }
 }

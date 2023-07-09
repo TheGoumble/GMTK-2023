@@ -13,7 +13,12 @@ public class PlayerCombatController : MonoBehaviour
     private int currentMove;
     public TextMeshProUGUI letterText;
     private string currentLetterToPress = " ";
+    private HealthController healthController;
     // Start is called before the first frame update
+
+    void Start(){
+        healthController = gameObject.GetComponent<HealthController>();
+    }
     void Update(){
         if(!InCombat) return;
         if(IsPlayersTurn){
@@ -133,11 +138,10 @@ public class PlayerCombatController : MonoBehaviour
     }
 
     public void SlimeBallAttack(){
-        for(int n = 0; n<3; n++){
-            GameObject slimeBall = Instantiate(slimeBallAttack, gameObject.transform);
-            slimeBall.GetComponent<Rigidbody2D>().AddForce(new Vector2(-1f, 0f)*250, ForceMode2D.Force);
-            StartCoroutine(DestroySlimeBall(slimeBall));
-        }
+        GameObject slimeBall = Instantiate(slimeBallAttack, gameObject.transform);
+        slimeBall.GetComponent<Rigidbody2D>().AddForce(new Vector2(-1f, 0f)*250, ForceMode2D.Force);
+        StartCoroutine(DestroySlimeBall(slimeBall));
+        gameObject.GetComponent<HealthController>().ChangeHealth(-2);
     }
 
     public void HitTimeOver(){
