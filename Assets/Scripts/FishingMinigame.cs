@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class FishingMinigame : MonoBehaviour
 {
@@ -74,6 +75,8 @@ public class FishingMinigame : MonoBehaviour
         plus = plus_go.GetComponent<TMP_Text>();
 
         biome = biome.ToLower();
+
+        biome = GameManager.Instance.GetBiome();
 
         //Activating correct biome grid
         if (biome == "grass")
@@ -231,8 +234,10 @@ public class FishingMinigame : MonoBehaviour
         }
         pp.Play();
         number.text = health_healed.ToString();
+        GameManager.Instance.SetHealthToHeal(health_healed);
         plus.color = number.color;
         jumpable = false;
+        StartCoroutine(ReturnToMain());
     }
 
     //Resets the minigame, mainly for debugging
@@ -242,5 +247,12 @@ public class FishingMinigame : MonoBehaviour
         fish_go.GetComponent<SpriteRenderer>().sprite = null;
         jumpable = true;
         moving = true;
+    }
+
+    IEnumerator ReturnToMain()
+    {
+        yield return new WaitForSeconds(5f);
+        SceneManager.LoadScene("Main");
+        yield return null;
     }
 }
