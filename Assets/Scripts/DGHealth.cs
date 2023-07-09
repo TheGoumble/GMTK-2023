@@ -21,6 +21,11 @@ public class DGHealth : MonoBehaviour
     public void ResetHealth(){
         health = maxHealth;
         gameObject.GetComponent<Animator>().enabled = true;
+        gameObject.SetActive(true);
+        gameObject.GetComponent<SpriteRenderer>().enabled = true;
+        gameObject.GetComponent<Animator>().enabled = true;
+        transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = true;
+        
     }
 
     public void ChangeHealth(int amount){
@@ -59,8 +64,6 @@ public class DGHealth : MonoBehaviour
         yield return new WaitForSeconds(6f);
         combatCamera.enabled = false;
         movementCamera.enabled = true;
-        combatCamera.gameObject.GetComponent<AudioListener>().enabled = false;
-        movementCamera.GetComponent<AudioListener>().enabled = true;
         transition.FadeOut();
         yield return null;
     }

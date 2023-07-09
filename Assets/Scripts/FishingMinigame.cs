@@ -251,6 +251,7 @@ public class FishingMinigame : MonoBehaviour
 
     IEnumerator ReturnToMain()
     {
+        GameManager.Instance.SetBiome("badlands");
         yield return new WaitForSeconds(5f);
         SceneManager.LoadScene("Main");
         yield return null;

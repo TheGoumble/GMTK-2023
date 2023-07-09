@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
 
     private string biome;
     private int healthToHeal;
+    private Vector3 cameraPos;
+    private Collider2D cameraBounds;
 
     public static GameManager Instance
     {
@@ -46,5 +48,18 @@ public class GameManager : MonoBehaviour
     public int GetHealthToHeal()
     {
         return healthToHeal;
+    }
+
+    public void SetCameraDeets(Vector3 pos, Collider2D bounds){
+        cameraPos = pos;
+        cameraBounds = bounds;
+    }
+
+    public Vector3 GetLastCamPosition(){
+        return cameraPos;
+    }
+
+    public Collider2D GetLastCamCollider(){
+        return cameraBounds;
     }
 }

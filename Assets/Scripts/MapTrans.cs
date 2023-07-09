@@ -9,16 +9,11 @@ public class MapTrans : MonoBehaviour
     public Collider2D newBoarder;
     public Transform pos;
     public GameObject CinimaController;
-    public bool sendToBattle;
-    // public int roomNumber;
-    public Camera  movementCam;
     public TransitionScreen transition;
-    public GameObject room;
-
     private void OnTriggerEnter2D(Collider2D col){
         if(col.tag == "Player"){
             StartCoroutine(Transition(col.gameObject));
-            room.SetActive(true);
+     
         }
     }
 
