@@ -11,8 +11,10 @@ public class HealthController : MonoBehaviour
     public Slider healthBar;
     public TextMeshProUGUI healthText, maxHealthText;
     public TransitionScreen transition;
+    private ParticleSYstem DeathParticles;
     void Start(){
         SetHealth();
+        DeathParticles = GetComponent<ParticleSYstem>();
     }
 
     public void SetHealth(){
@@ -41,6 +43,10 @@ public class HealthController : MonoBehaviour
     {
         // You can add whatever animations or control freezes or things you want before this,
         // but it will always end with this scene change
+
+        
+        DeathParticles.Play();
+        yield return new WaitForSeconds(2f);
         transition.FadeIn();
         yield return new WaitForSeconds(6f);
         SceneManager.LoadScene("99_GameOver");
