@@ -31,6 +31,12 @@ public class MainMenu : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         mainMenu.SetActive(true);
         creditsMenu.SetActive(false);
     }
+
+    public void ReturnToTitleScreenButton()
+    {
+        StartCoroutine(DoReturnToTitle());
+    }
+    
     public void QuitButton()
     {
         Application.Quit();
@@ -41,6 +47,13 @@ public class MainMenu : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         transitionScreen.FadeIn();
         yield return new WaitForSeconds(6f);
         SceneManager.LoadScene(1); // Load the opening cutscene
+    }
+
+    IEnumerator DoReturnToTitle()
+    {
+        transitionScreen.FadeIn();
+        yield return new WaitForSeconds(6f);
+        SceneManager.LoadScene(1); // Load the title screen
     }
 
     public void OnPointerEnter(PointerEventData eventData)
