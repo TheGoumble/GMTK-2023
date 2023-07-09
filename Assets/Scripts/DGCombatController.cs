@@ -14,7 +14,7 @@ public class DGCombatController : MonoBehaviour
     public bool playerDodged = false;
     private bool madeMove = false;
     public Transform startMarker, endMarker;
-    public GameObject QTE;
+    public GameObject QTE, slashAttack;
     public TextMeshProUGUI letter;
     public Animator GDAnimator;
     public PlayerCombatController playerCombatController;
@@ -45,6 +45,15 @@ public class DGCombatController : MonoBehaviour
             
         }
     }
+    public void SpawnSlash(){
+        GameObject slash = Instantiate(slashAttack, gameObject.transform);
+        slash.GetComponent<Rigidbody2D>().AddForce(new Vector2(1f, 0f)*250, ForceMode2D.Force);
+        StartCoroutine(DestroySlash(slash));
+    }
+    IEnumerator DestroySlash(GameObject slash){
+        yield return new WaitForSeconds(5f);
+        Destroy(slash);
+    }
 
     public void EndAnimations(){
         GDAnimator.SetBool("Attack1", false);
@@ -58,7 +67,6 @@ public class DGCombatController : MonoBehaviour
         QTE.SetActive(true);
         playerDodged = false;
         letter.GetComponent<GenerateRandomLetter>().GenerateLetter();
-        
     }
     public void ClosePlayerDodgeWindow(){
         QTE.SetActive(false);

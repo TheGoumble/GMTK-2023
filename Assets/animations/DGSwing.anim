@@ -131,6 +131,13 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 0.31666666
+    functionName: SpawnSlash
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.95
     functionName: ClosePlayerDodgeWindow
     data: 
@@ -152,6 +159,13 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 1.3166667
+    functionName: SpawnSlash
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 1.9333333
     functionName: ClosePlayerDodgeWindow
     data: 
@@ -168,6 +182,13 @@ AnimationClip:
     messageOptions: 0
   - time: 2.0166667
     functionName: EnablePlayerDodgeWindow
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 2.3166666
+    functionName: SpawnSlash
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
