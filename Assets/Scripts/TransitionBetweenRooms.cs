@@ -51,7 +51,7 @@ public class TransitionBetweenRooms : MonoBehaviour
     }
     private void Update() {
         if(room.name == "Map3Arena" && GoodDoer.GetComponent<DGHealth>().health <= 0 && room.activeInHierarchy){
-            SceneManager.LoadScene(5);
+            SceneManager.LoadScene(4);
         }
     }
 }
